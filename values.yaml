@@ -1,0 +1,33 @@
+replicaCount: 1
+
+image:
+  repository: nginx:1.16.0
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  #tag: "latest"
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+container:
+  port: 80
+  name: testchart
+
+configMap:
+  item:
+     key: index.html
+     path: index.html
+
+volumeMount:
+  mountPath: /usr/share/nginx/html
